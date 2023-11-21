@@ -2,14 +2,19 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["nombre"]) && isset($_POST["realizada"]) && isset($_POST["descripcion"])) {
+if (isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["miniatura"]) && isset($_POST["video"])) {
     $nombre = $_POST["nombre"];
-    $realizada = $_POST["realizada"] === "1" ? 1 : 0;
     $descripcion = $_POST["descripcion"];
+    $miniatura = $_POST["miniatura"];
+    $video = $_POST["video"];
 
-    $query = "INSERT INTO `tareas`(`nombre`, `realizada`, `descripcion`) VALUES ('$nombre', $realizada, '$descripcion')";
+    $query = "INSERT INTO `tareas`(`nombre`, `descripcion`, `miniatura`, `video`) VALUES (?, ?, ?)";
 
-    $exe = mysqli_query($con, $query);
+    $stmt = mysqli_prepare($con, $query);
+
+    mysqli_stmt_bind_param($stmt, "ssss", $nombre, $descripcion, $miniatura, $video);
+
+    $exe = mysqli_stmt_execute($stmt);
 
     $arr = [];
 
@@ -20,6 +25,9 @@ if (isset($_POST["nombre"]) && isset($_POST["realizada"]) && isset($_POST["descr
         $arr["success"] = "false";
         $arr["error"] = mysqli_error($con);
     }
+
+    mysqli_stmt_close($stmt);
+
 } else {
     $arr["success"] = "false";
 }

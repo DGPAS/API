@@ -10,9 +10,17 @@ if (isset($_POST["idTareas"])) {
     return;
 }
 
-$query = "DELETE FROM `tareas` WHERE idTareas='$idTareas'";
+$query = "DELETE FROM `tareas` WHERE idTareas=?";
+$stmt = mysqli_prepare($con, $query);
 
-$exe = mysqli_query($con, $query);
+if (!$stmt) {
+    echo json_encode(["success" => false, "error" => "Error in prepared statement: " . mysqli_error($con)]);
+    return;
+}
+
+mysqli_stmt_bind_param($stmt, "i", $idTareas);
+
+$exe = mysqli_stmt_execute($stmt);
 
 $arr = [];
 if ($exe) {
@@ -21,6 +29,9 @@ if ($exe) {
     $arr["success"] = false;
     $arr["error"] = mysqli_error($con);
 }
+
+mysqli_stmt_close($stmt);
+
 echo json_encode($arr);
 
 ?>

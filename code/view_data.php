@@ -8,8 +8,6 @@ $con=dbconnection();
 
 $query = "SELECT `idTareas`, `nombre`, `realizada`, `descripcion`, `inicio`, `final`, `agenda_id`, `miniatura` FROM `tareas`";
 
-
-
 $exe=mysqli_query($con,$query);
 
 if (!$exe) {

@@ -8,7 +8,7 @@ if (isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["min
     $miniatura = $_POST["miniatura"];
     $video = $_POST["video"];
 
-    $query = "INSERT INTO `tareas`(`nombre`, `descripcion`, `miniatura`, `video`) VALUES (?, ?, ?)";
+    $query = "INSERT INTO `tareas`(`nombre`, `descripcion`, `miniatura`, `video`) VALUES (?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($con, $query);
 

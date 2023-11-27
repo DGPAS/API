@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 include("dbconnection.php");
 $con=dbconnection();
 
-$query = "SELECT `idTareas`, `nombre`, `descripcion`, `miniatura`, `video` FROM `tareas`";
+$query = "SELECT `id`, `nombre`, `Apellido`, `foto`, `texto`, `audio`, `video` FROM `Alumno`";
 
 $exe=mysqli_query($con,$query);
 

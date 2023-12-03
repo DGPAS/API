@@ -2,12 +2,12 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["video"])) {
-    $name = $_POST["nombre"];
-    $description = $_POST["descripcion"];
+if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["video"])) {
+    $name = $_POST["name"];
+    $description = $_POST["description"];
     $video = $_POST["video"];
 
-    $query = "INSERT INTO `tareas`(`nombre`, `descripcion`, `video`) VALUES (?, ?, ?)";
+    $query = "INSERT INTO `tasks`(`name`, `description`, `video`) VALUES (?, ?, ?)";
 
     $stmt = mysqli_prepare($con, $query);
 

@@ -3,16 +3,16 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["idStudent"]) && isset($_POST["nombre"]) && isset($_POST["Apellido"]) && isset($_POST["texto"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
+if (isset($_POST["idStudent"]) && isset($_POST["firstName"]) && isset($_POST["lastName"]) && isset($_POST["text"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
 
     $idStudent = $_POST["idStudent"];
-    $name = $_POST["nombre"];
-    $lastName = $_POST["Apellido"];
-    $text = $_POST["texto"];
+    $name = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $text = $_POST["text"];
     $audio = $_POST["audio"];
     $video = $_POST["video"];
 
-    $query = "UPDATE `Alumno` SET `nombre`=?, `Apellido`=?, `texto`=?, `audio`=?, `video`=? WHERE `id`=?";
+    $query = "UPDATE `student` SET `firstName`=?, `lastName`=?, `text`=?, `audio`=?, `video`=? WHERE `id`=?";
 
     $stmt = mysqli_prepare($con, $query);
         

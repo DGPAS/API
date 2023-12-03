@@ -10,7 +10,7 @@ $con=dbconnection();
 if (isset($_GET["idStudent"])) {
     $idStudent = $_GET["idStudent"];
 
-    $query = "SELECT `idTarea` FROM `Agenda` WHERE `idAlumno` = ?";
+    $query = "SELECT `idTask` FROM `agenda` WHERE `idStudent` = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

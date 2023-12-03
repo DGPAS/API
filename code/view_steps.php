@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 include("dbconnection.php");
 $con=dbconnection();
 
-if (isset($_GET["idTarea"])) {
-    $idTask = $_GET["idTarea"];
+if (isset($_GET["idTask"])) {
+    $idTask = $_GET["idTask"];
 
-    $query = "SELECT * FROM `pasos` WHERE `idTarea` = ?";
+    $query = "SELECT * FROM `steps` WHERE `idTask` = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

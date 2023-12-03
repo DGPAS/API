@@ -10,7 +10,7 @@ $con=dbconnection();
 if (isset($_GET["idTarea"])) {
     $idTask = $_GET["idTarea"];
 
-    $query = "SELECT `nombre`, `descripcion`, `miniatura`, `video` FROM `tareas` WHERE `idTareas` = ?";
+    $query = "SELECT `name`, `description`, `miniature`, `video` FROM `tasks` WHERE `idTasks` = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

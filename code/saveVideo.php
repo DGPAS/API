@@ -5,16 +5,16 @@ $con = dbconnection();
 
 $home = getenv('HOME');
 
-if (isset($_FILES['video']) && isset($_POST['idTareas'])) {
+if (isset($_FILES['video']) && isset($_POST['idTasks'])) {
     $video = $_FILES['video']['name'];
-    $idTasks = $_POST['idTareas'];
+    $idTasks = $_POST['idTasks'];
 
     $videoPath = 'video/' . $video;
     $tmp_name = $_FILES['video']['tmp_name'];
 
     move_uploaded_file($tmp_name, $videoPath);
 
-    $query = "UPDATE `tareas` SET `video`=? WHERE `idTareas`=?";
+    $query = "UPDATE `tasks` SET `video`=? WHERE `idTasks`=?";
 
     $stmt = mysqli_prepare($con, $query);
 
@@ -26,7 +26,7 @@ if (isset($_FILES['video']) && isset($_POST['idTareas'])) {
 
     if ($exe) {
         $arr["success"] = "true";
-        $arr["idTareas"] = $idTasks; // Use the provided idTareas directly
+        $arr["idTasks"] = $idTasks; // Use the provided idTasks directly
     } else {
         $arr["success"] = "false";
         $arr["error"] = mysqli_error($con);

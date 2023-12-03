@@ -2,15 +2,15 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["nombre"]) && isset($_POST["Apellido"]) && isset($_POST["foto"]) && isset($_POST["texto"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
-    $name = $_POST["nombre"];
-    $lastName = $_POST["Apellido"];
-    $picture = $_POST["foto"];
-    $text = $_POST["texto"];
+if (isset($_POST["firstName"]) && isset($_POST["lastName"]) && isset($_POST["picture"]) && isset($_POST["text"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
+    $name = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $picture = $_POST["picture"];
+    $text = $_POST["text"];
     $audio = $_POST["audio"];
     $video = $_POST["video"];
 
-    $query = "INSERT INTO `Alumno`(`nombre`, `Apellido`, `foto`, `texto`, `audio`, `video`) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO `student`(`firstName`, `lastName`, `picture`, `text`, `audio`, `video`) VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($con, $query);
 

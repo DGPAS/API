@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 include("dbconnection.php");
 $con=dbconnection();
 
-if (isset($_POST["nombre"])) {
-    $name = $_POST["nombre"];
+if (isset($_POST["name"])) {
+    $name = $_POST["name"];
 
-    $query = "SELECT `idTareas` FROM `tareas` WHERE `nombre` = ?";
+    $query = "SELECT `idTasks` FROM `tasks` WHERE `name` = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);
@@ -31,7 +31,7 @@ if (isset($_POST["nombre"])) {
     // Obtener el resultado
     mysqli_stmt_fetch($stmt);
 
-    $arr["idTareas"] = $idTasks;
+    $arr["idTasks"] = $idTasks;
     $arr["success"] = "true";
 
     // Cerrar la sentencia preparada

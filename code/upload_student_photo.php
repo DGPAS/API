@@ -13,7 +13,7 @@ $home = getenv('HOME');
 
         move_uploaded_file($tmp_name, $imagePath);
 
-        $query = "UPDATE `Alumno` SET `foto`=? WHERE `id`=?";
+        $query = "UPDATE `student` SET `picture`=? WHERE `id`=?";
 
         $stmt = mysqli_prepare($con, $query);
         

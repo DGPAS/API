@@ -9,7 +9,7 @@ $con=dbconnection();
 if (isset($_GET["idStudent"])) {
     $idStudent = $_GET["idStudent"];
 
-    $query = "SELECT `pictograma1`, `pictograma2`,`pictograma3` FROM `passwordAlumno` WHERE `idAlumno` = ? LIMIT 1";
+    $query = "SELECT `pictogram1`, `pictogram2`,`pictogram3` FROM `passwordStudent` WHERE `idStudent` = ? LIMIT 1";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

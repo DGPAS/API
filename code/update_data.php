@@ -3,24 +3,24 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["idTareas"])) {
+if (isset($_POST["idTasks"])) {
 
-    $idTasks = $_POST["idTareas"];
+    $idTasks = $_POST["idTasks"];
 
-    if (isset($_POST["nombre"]) && isset($_POST["descripcion"])) {
-        $name = $_POST["nombre"];
-        $description = $_POST["descripcion"];
+    if (isset($_POST["name"]) && isset($_POST["description"])) {
+        $name = $_POST["name"];
+        $description = $_POST["description"];
 
-        $query = "UPDATE `tareas` SET `nombre`=?, `descripcion`=? WHERE `idTareas`=?";
+        $query = "UPDATE `tareas` SET `name`=?, `description`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
         mysqli_stmt_bind_param($stmt, "ssi", $name, $description, $idTasks);
     }
-    else if (isset($_POST["nombre"])) {
-        $name = $_POST["nombre"];
+    else if (isset($_POST["name"])) {
+        $name = $_POST["name"];
 
-        $query = "UPDATE `tareas` SET `nombre`=? WHERE `idTareas`=?";
+        $query = "UPDATE `tareas` SET `name`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
@@ -28,16 +28,16 @@ if (isset($_POST["idTareas"])) {
     }
     
     else {
-        $description = $_POST["descripcion"];
+        $description = $_POST["description"];
 
-        $query = "UPDATE `tareas` SET `descripcion`=? WHERE `idTareas`=?";
+        $query = "UPDATE `tasks` SET `description`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
         mysqli_stmt_bind_param($stmt, "si", $description, $idTasks);
     }
 
-    if (isset($_POST["nombre"]) || isset($_POST["descripcion"])) {
+    if (isset($_POST["name"]) || isset($_POST["description"])) {
 
         $exe = mysqli_stmt_execute($stmt);
 

@@ -10,8 +10,8 @@ if (isset($_POST["idStudent"])) {
     return;
 }
 
-$query = "DELETE FROM `Alumno` WHERE id=?";
-$query2 = "DELETE FROM `passwordAlumno` WHERE idAlumno=?";
+$query = "DELETE FROM `student` WHERE id=?";
+$query2 = "DELETE FROM `passwordStudent` WHERE idStudent=?";
 
 $stmt = mysqli_prepare($con, $query);
 $stmt2 = mysqli_prepare($con, $query2);

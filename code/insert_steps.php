@@ -7,14 +7,14 @@ $arr = [];
 if (!$con) {
     $arr["success"] = "false";
     $arr["error"] = "Error de conexión a la base de datos";
-} elseif (isset($_POST["numPaso"]) && isset($_POST["idTarea"]) && isset($_POST["descripcion"]) && isset($_POST["imagen"])) {
-    $numStep = $_POST["numPaso"];
-    $idTask = $_POST["idTarea"];
-    $description = $_POST["descripcion"];
-    $image = $_POST["imagen"];
+} elseif (isset($_POST["numStep"]) && isset($_POST["idTask"]) && isset($_POST["description"]) && isset($_POST["image"])) {
+    $numStep = $_POST["numStep"];
+    $idTask = $_POST["idTask"];
+    $description = $_POST["description"];
+    $image = $_POST["image"];
 
     // Sentencia preparada
-    $query = "INSERT INTO `pasos`(`numPaso`, `descripcion`, `imagen`, `idTarea`) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO `steps`(`numStep`, `description`, `image`, `idTask`) VALUES (?, ?, ?, ?)";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

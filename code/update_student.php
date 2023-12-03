@@ -6,9 +6,9 @@ $con = dbconnection();
 if (isset($_POST["idStudent"]) && isset($_POST["nombre"]) && isset($_POST["Apellido"]) && isset($_POST["texto"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
 
     $idStudent = $_POST["idStudent"];
-    $nombre = $_POST["nombre"];
-    $Apellido = $_POST["Apellido"];
-    $texto = $_POST["texto"];
+    $name = $_POST["nombre"];
+    $lastName = $_POST["Apellido"];
+    $text = $_POST["texto"];
     $audio = $_POST["audio"];
     $video = $_POST["video"];
 
@@ -16,7 +16,7 @@ if (isset($_POST["idStudent"]) && isset($_POST["nombre"]) && isset($_POST["Apell
 
     $stmt = mysqli_prepare($con, $query);
         
-    mysqli_stmt_bind_param($stmt, "ssiiii", $nombre, $Apellido, $texto, $audio, $video, $idStudent);    
+    mysqli_stmt_bind_param($stmt, "ssiiii", $name, $lastName, $text, $audio, $video, $idStudent);    
 
     $exe = mysqli_stmt_execute($stmt);
 

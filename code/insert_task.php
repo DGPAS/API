@@ -3,15 +3,15 @@ include("dbconnection.php");
 $con = dbconnection();
 
 if (isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["video"])) {
-    $nombre = $_POST["nombre"];
-    $descripcion = $_POST["descripcion"];
+    $name = $_POST["nombre"];
+    $description = $_POST["descripcion"];
     $video = $_POST["video"];
 
     $query = "INSERT INTO `tareas`(`nombre`, `descripcion`, `video`) VALUES (?, ?, ?)";
 
     $stmt = mysqli_prepare($con, $query);
 
-    mysqli_stmt_bind_param($stmt, "sss", $nombre, $descripcion, $video);
+    mysqli_stmt_bind_param($stmt, "sss", $name, $description, $video);
 
     $exe = mysqli_stmt_execute($stmt);
 

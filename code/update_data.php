@@ -5,36 +5,36 @@ $con = dbconnection();
 
 if (isset($_POST["idTareas"])) {
 
-    $idTareas = $_POST["idTareas"];
+    $idTasks = $_POST["idTareas"];
 
     if (isset($_POST["nombre"]) && isset($_POST["descripcion"])) {
-        $nombre = $_POST["nombre"];
-        $descripcion = $_POST["descripcion"];
+        $name = $_POST["nombre"];
+        $description = $_POST["descripcion"];
 
         $query = "UPDATE `tareas` SET `nombre`=?, `descripcion`=? WHERE `idTareas`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "ssi", $nombre, $descripcion, $idTareas);
+        mysqli_stmt_bind_param($stmt, "ssi", $name, $description, $idTasks);
     }
     else if (isset($_POST["nombre"])) {
-        $nombre = $_POST["nombre"];
+        $name = $_POST["nombre"];
 
         $query = "UPDATE `tareas` SET `nombre`=? WHERE `idTareas`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "si", $nombre, $idTareas);
+        mysqli_stmt_bind_param($stmt, "si", $name, $idTasks);
     }
     
     else {
-        $descripcion = $_POST["descripcion"];
+        $description = $_POST["descripcion"];
 
         $query = "UPDATE `tareas` SET `descripcion`=? WHERE `idTareas`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "si", $descripcion, $idTareas);
+        mysqli_stmt_bind_param($stmt, "si", $description, $idTasks);
     }
 
     if (isset($_POST["nombre"]) || isset($_POST["descripcion"])) {

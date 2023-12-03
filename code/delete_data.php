@@ -4,7 +4,7 @@ include("dbconnection.php");
 $con = dbconnection();
 
 if (isset($_POST["idTareas"])) {
-    $idTareas = $_POST["idTareas"];
+    $idTasks = $_POST["idTareas"];
 } else {
     echo json_encode(["success" => false, "error" => "No idTareas provided"]);
     return;
@@ -20,10 +20,10 @@ if (!$stmt1 || !$stmt2) {
     return;
 }
 
-mysqli_stmt_bind_param($stmt1, "i", $idTareas);
+mysqli_stmt_bind_param($stmt1, "i", $idTasks);
 $exe1 = mysqli_stmt_execute($stmt1);
 
-mysqli_stmt_bind_param($stmt2, "i", $idTareas);
+mysqli_stmt_bind_param($stmt2, "i", $idTasks);
 $exe2 = mysqli_stmt_execute($stmt2);
 
 $arr = [];

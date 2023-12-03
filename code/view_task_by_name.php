@@ -7,7 +7,7 @@ include("dbconnection.php");
 $con=dbconnection();
 
 if (isset($_POST["nombre"])) {
-    $nombre = $_POST["nombre"];
+    $name = $_POST["nombre"];
 
     $query = "SELECT `idTareas` FROM `tareas` WHERE `nombre` = ?";
 
@@ -15,7 +15,7 @@ if (isset($_POST["nombre"])) {
     $stmt = mysqli_prepare($con, $query);
 
     // Vincular parámetros
-    mysqli_stmt_bind_param($stmt, "s", $nombre);
+    mysqli_stmt_bind_param($stmt, "s", $name);
 
     // Ejecutar la sentencia
     $exe = mysqli_stmt_execute($stmt);
@@ -26,12 +26,12 @@ if (isset($_POST["nombre"])) {
         die('Error en la consulta: ' . mysqli_error($con));
     }
 
-    mysqli_stmt_bind_result($stmt, $idTareas);
+    mysqli_stmt_bind_result($stmt, $idTasks);
 
     // Obtener el resultado
     mysqli_stmt_fetch($stmt);
 
-    $arr["idTareas"] = $idTareas;
+    $arr["idTareas"] = $idTasks;
     $arr["success"] = "true";
 
     // Cerrar la sentencia preparada

@@ -6,7 +6,7 @@ $home = getenv('HOME');
 
     if (isset($_FILES['image']) && isset($_POST['idTareas'])) {
         $image = $_FILES['image']['name'];
-        $idTareas = $_POST['idTareas'];
+        $idTasks = $_POST['idTareas'];
 
         $imagePath = 'images/' . $image;
         $tmp_name = $_FILES['image']['tmp_name'];
@@ -17,7 +17,7 @@ $home = getenv('HOME');
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "si", $image, $idTareas);
+        mysqli_stmt_bind_param($stmt, "si", $image, $idTasks);
 
         $exe = mysqli_stmt_execute($stmt);
 

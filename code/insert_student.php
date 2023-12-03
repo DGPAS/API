@@ -3,10 +3,10 @@ include("dbconnection.php");
 $con = dbconnection();
 
 if (isset($_POST["nombre"]) && isset($_POST["Apellido"]) && isset($_POST["foto"]) && isset($_POST["texto"]) && isset($_POST["audio"]) && isset($_POST["video"])) {
-    $nombre = $_POST["nombre"];
-    $Apellido = $_POST["Apellido"];
-    $foto = $_POST["foto"];
-    $texto = $_POST["texto"];
+    $name = $_POST["nombre"];
+    $lastName = $_POST["Apellido"];
+    $picture = $_POST["foto"];
+    $text = $_POST["texto"];
     $audio = $_POST["audio"];
     $video = $_POST["video"];
 
@@ -14,7 +14,7 @@ if (isset($_POST["nombre"]) && isset($_POST["Apellido"]) && isset($_POST["foto"]
 
     $stmt = mysqli_prepare($con, $query);
 
-    mysqli_stmt_bind_param($stmt, "sssiii", $nombre, $Apellido, $foto, $texto, $audio, $video);
+    mysqli_stmt_bind_param($stmt, "sssiii", $name, $lastName, $picture, $text, $audio, $video);
 
 
     $exe = mysqli_stmt_execute($stmt);

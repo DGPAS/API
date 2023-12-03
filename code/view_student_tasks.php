@@ -8,7 +8,7 @@ $con=dbconnection();
 
 
 if (isset($_GET["idTarea"])) {
-    $idTarea = $_GET["idTarea"];
+    $idTask = $_GET["idTarea"];
 
     $query = "SELECT `nombre`, `descripcion`, `miniatura`, `video` FROM `tareas` WHERE `idTareas` = ?";
 
@@ -16,7 +16,7 @@ if (isset($_GET["idTarea"])) {
     $stmt = mysqli_prepare($con, $query);
 
     // Vincular parámetros
-    mysqli_stmt_bind_param($stmt, "i", $idTarea);
+    mysqli_stmt_bind_param($stmt, "i", $idTask);
 
     // Ejecutar la sentencia
     $exe = mysqli_stmt_execute($stmt);

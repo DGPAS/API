@@ -8,10 +8,10 @@ if (!$con) {
     $arr["success"] = "false";
     $arr["error"] = "Error de conexión a la base de datos";
 } elseif (isset($_POST["numPaso"]) && isset($_POST["idTarea"]) && isset($_POST["descripcion"]) && isset($_POST["imagen"])) {
-    $numPaso = $_POST["numPaso"];
-    $idTarea = $_POST["idTarea"];
-    $descripcion = $_POST["descripcion"];
-    $imagen = $_POST["imagen"];
+    $numStep = $_POST["numPaso"];
+    $idTask = $_POST["idTarea"];
+    $description = $_POST["descripcion"];
+    $image = $_POST["imagen"];
 
     // Sentencia preparada
     $query = "INSERT INTO `pasos`(`numPaso`, `descripcion`, `imagen`, `idTarea`) VALUES (?, ?, ?, ?)";
@@ -21,7 +21,7 @@ if (!$con) {
 
     if ($stmt) {
         // Vincular parámetros
-        mysqli_stmt_bind_param($stmt, "issi", $numPaso, $descripcion, $imagen, $idTarea);
+        mysqli_stmt_bind_param($stmt, "issi", $numStep, $description, $image, $idTask);
 
         // Ejecutar la sentencia
         $exe = mysqli_stmt_execute($stmt);

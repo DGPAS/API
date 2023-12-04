@@ -9,7 +9,7 @@ $con=dbconnection();
 if (isset($_GET["idStudent"])) {
     $idStudent = $_GET["idStudent"];
 
-    $query = "SELECT `id`, `nombre`,`Apellido`, `foto`, `texto`, `audio`, `video` FROM `Alumno` WHERE `id` = ? LIMIT 1";
+    $query = "SELECT `id`, `firstName`,`lastName`, `picture`, `text`, `audio`, `video` FROM `student` WHERE `id` = ? LIMIT 1";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

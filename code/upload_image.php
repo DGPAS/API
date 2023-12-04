@@ -4,20 +4,20 @@ include("dbconnection.php");
 $con = dbconnection();
 $home = getenv('HOME');
 
-    if (isset($_FILES['image']) && isset($_POST['idTareas'])) {
+    if (isset($_FILES['image']) && isset($_POST['idTasks'])) {
         $image = $_FILES['image']['name'];
-        $idTareas = $_POST['idTareas'];
+        $idTasks = $_POST['idTasks'];
 
         $imagePath = 'images/' . $image;
         $tmp_name = $_FILES['image']['tmp_name'];
 
         move_uploaded_file($tmp_name, $imagePath);
 
-        $query = "UPDATE `tareas` SET `miniatura`=? WHERE `idTareas`=?";
+        $query = "UPDATE `tasks` SET `miniature`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "si", $image, $idTareas);
+        mysqli_stmt_bind_param($stmt, "si", $image, $idTasks);
 
         $exe = mysqli_stmt_execute($stmt);
 
@@ -25,7 +25,7 @@ $home = getenv('HOME');
 
         if ($exe) {
             $arr["success"] = "true";
-            $arr["idTareas"] = mysqli_insert_id($con);
+            $arr["idTasks"] = mysqli_insert_id($con);
         } else {
             $arr["success"] = "false";
             $arr["error"] = mysqli_error($con);

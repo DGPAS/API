@@ -3,15 +3,15 @@
 include("dbconnection.php");
 $con = dbconnection();
 
-if (isset($_POST["idTareas"])) {
-    $idTareas = $_POST["idTareas"];
+if (isset($_POST["idTasks"])) {
+    $idTasks = $_POST["idTasks"];
 } else {
-    echo json_encode(["success" => false, "error" => "No idTareas provided"]);
+    echo json_encode(["success" => false, "error" => "No idTasks provided"]);
     return;
 }
 
-$query1 = "DELETE FROM `pasos` WHERE idTarea=?";
-$query2 = "DELETE FROM `tareas` WHERE idTareas=?";
+$query1 = "DELETE FROM `steps` WHERE idTask=?";
+$query2 = "DELETE FROM `tasks` WHERE idTasks=?";
 $stmt1 = mysqli_prepare($con, $query1);
 $stmt2 = mysqli_prepare($con, $query2);
 
@@ -20,10 +20,10 @@ if (!$stmt1 || !$stmt2) {
     return;
 }
 
-mysqli_stmt_bind_param($stmt1, "i", $idTareas);
+mysqli_stmt_bind_param($stmt1, "i", $idTasks);
 $exe1 = mysqli_stmt_execute($stmt1);
 
-mysqli_stmt_bind_param($stmt2, "i", $idTareas);
+mysqli_stmt_bind_param($stmt2, "i", $idTasks);
 $exe2 = mysqli_stmt_execute($stmt2);
 
 $arr = [];

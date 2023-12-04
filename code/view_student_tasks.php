@@ -8,15 +8,15 @@ $con=dbconnection();
 
 
 if (isset($_GET["idTarea"])) {
-    $idTarea = $_GET["idTarea"];
+    $idTask = $_GET["idTarea"];
 
-    $query = "SELECT `nombre`, `descripcion`, `miniatura`, `video` FROM `tareas` WHERE `idTareas` = ?";
+    $query = "SELECT `name`, `description`, `thumbnail`, `video` FROM `tasks` WHERE `idTasks` = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);
 
     // Vincular parámetros
-    mysqli_stmt_bind_param($stmt, "i", $idTarea);
+    mysqli_stmt_bind_param($stmt, "i", $idTask);
 
     // Ejecutar la sentencia
     $exe = mysqli_stmt_execute($stmt);

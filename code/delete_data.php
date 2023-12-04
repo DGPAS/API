@@ -11,7 +11,7 @@ if (isset($_POST["idTasks"])) {
 }
 
 $query1 = "DELETE FROM `steps` WHERE idTask=?";
-$query2 = "DELETE FROM `` WHERE idTasks=?";
+$query2 = "DELETE FROM `tasks` WHERE idTasks=?";
 $stmt1 = mysqli_prepare($con, $query1);
 $stmt2 = mysqli_prepare($con, $query2);
 

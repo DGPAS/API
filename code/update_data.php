@@ -7,24 +7,24 @@ if (isset($_POST["idTasks"])) {
 
     $idTasks = $_POST["idTasks"];
 
-    if (isset($_POST["name"]) && isset($_POST["description"])) {
-        $name = $_POST["name"];
+    if (isset($_POST["taskName"]) && isset($_POST["description"])) {
+        $taskName = $_POST["taskName"];
         $description = $_POST["description"];
 
-        $query = "UPDATE `tareas` SET `name`=?, `description`=? WHERE `idTasks`=?";
+        $query = "UPDATE `tasks` SET `taskName`=?, `description`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "ssi", $name, $description, $idTasks);
+        mysqli_stmt_bind_param($stmt, "ssi", $taskName, $description, $idTasks);
     }
-    else if (isset($_POST["name"])) {
-        $name = $_POST["name"];
+    else if (isset($_POST["taskName"])) {
+        $taskName = $_POST["taskName"];
 
-        $query = "UPDATE `tareas` SET `name`=? WHERE `idTasks`=?";
+        $query = "UPDATE `tareas` SET `taskName`=? WHERE `idTasks`=?";
 
         $stmt = mysqli_prepare($con, $query);
         
-        mysqli_stmt_bind_param($stmt, "si", $name, $idTasks);
+        mysqli_stmt_bind_param($stmt, "si", $taskName, $idTasks);
     }
     
     else {
@@ -37,7 +37,7 @@ if (isset($_POST["idTasks"])) {
         mysqli_stmt_bind_param($stmt, "si", $description, $idTasks);
     }
 
-    if (isset($_POST["name"]) || isset($_POST["description"])) {
+    if (isset($_POST["taskName"]) || isset($_POST["description"])) {
 
         $exe = mysqli_stmt_execute($stmt);
 

@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 include("dbconnection.php");
 $con=dbconnection();
 
-$query = "SELECT `idTask`, `name`, `description`, `thumbnail`, `video` FROM `tasks`";
+$query = "SELECT `idTask`, `taskName`, `description`, `thumbnail`, `video` FROM `tasks`";
 
 $exe=mysqli_query($con,$query);
 

@@ -19,7 +19,7 @@ if (isset($_POST["taskName"]) && isset($_POST["description"]) && isset($_POST["v
 
     if ($exe) {
         $arr["success"] = "true";
-        $arr["idTareas"] = mysqli_insert_id($con); // Añade al array el idTareas (mysqli_insert_id devuelve el valor de una columna AUTO_INCREMENT actualizada, en nuestro caso idTareas)
+        $arr["idTask"] = mysqli_insert_id($con); // Añade al array el idTareas (mysqli_insert_id devuelve el valor de una columna AUTO_INCREMENT actualizada, en nuestro caso idTareas)
     } else {
         $arr["success"] = "false";
         $arr["error"] = mysqli_error($con);

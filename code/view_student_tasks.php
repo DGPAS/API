@@ -7,27 +7,26 @@ include("dbconnection.php");
 $con=dbconnection();
 
 
-if (isset($_GET["idTarea"])) {
-    $idTask = $_GET["idTarea"];
+if (isset($_GET["idStudent"])) {
+    $idStudent = $_GET["idStudent"];
 
-    $query = "SELECT `name`, `description`, `thumbnail`, `video` FROM `tasks` WHERE `idTasks` = ?";
+    // Join of both tables to get all the task attributes that belongs to the student with idStudent 
+    $query = "SELECT agenda.id, agenda.idStudent, tasks.taskName, tasks.description, tasks.thumbnail, tasks.video, 
+                    agenda.idTask, agenda.done, agenda.dateStart, agenda.dateEnd FROM `agenda` INNER JOIN `tasks`
+                    ON agenda.idTask = tasks.idTask WHERE agenda.idStudent = ?";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);
 
     // Vincular parámetros
-    mysqli_stmt_bind_param($stmt, "i", $idTask);
+    mysqli_stmt_bind_param($stmt, "i", $idStudent);
 
     // Ejecutar la sentencia
     $exe = mysqli_stmt_execute($stmt);
 
     if (!$exe) {
-        $arr["success"] = "false";
-        $arr["error"] = "Error en la consulta: " . mysqli_error($con);
         die('Error en la consulta: ' . mysqli_error($con));
     }
-
-    $arr["success"] = "true";
 
     $result = mysqli_stmt_get_result($stmt);
 
@@ -41,8 +40,7 @@ if (isset($_GET["idTarea"])) {
     mysqli_stmt_close($stmt);
     
 } else {
-    $arr["success"] = "false";
-}
+    die('Error en la consulta: ' . mysqli_error($con));}
 
 print(json_encode($arr));
 ?>

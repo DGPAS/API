@@ -6,14 +6,16 @@ error_reporting(E_ALL);
 include("dbconnection.php");
 $con=dbconnection();
 
+$currentDate = date('Y-m-d');
 
 if (isset($_GET["idStudent"])) {
     $idStudent = $_GET["idStudent"];
 
     // Join of both tables to get all the task attributes that belongs to the student with idStudent 
     $query = "SELECT agenda.id, agenda.idStudent, tasks.taskName, tasks.description, tasks.thumbnail, tasks.video, 
-                    agenda.idTask, agenda.done, agenda.dateStart, agenda.dateEnd FROM `agenda` INNER JOIN `tasks`
-                    ON agenda.idTask = tasks.idTask WHERE agenda.idStudent = ?";
+                    agenda.idTask, agenda.done FROM `agenda` INNER JOIN `tasks`
+                    ON agenda.idTask = tasks.idTask WHERE agenda.idStudent = ?  AND agenda.done = 0 
+                    AND agenda.dateStart <= '$currentDate'AND agenda.dateEnd >= '$currentDate'";
 
     // Preparar la sentencia
     $stmt = mysqli_prepare($con, $query);

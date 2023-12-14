@@ -21,8 +21,6 @@ if (isset($_GET["idTask"])) {
     $exe = mysqli_stmt_execute($stmt);
 
     if (!$exe) {
-        $arr["success"] = "false";
-        $arr["error"] = "Error en la consulta: " . mysqli_error($con);
         die('Error en la consulta: ' . mysqli_error($con));
     }
 
@@ -38,7 +36,7 @@ if (isset($_GET["idTask"])) {
     mysqli_stmt_close($stmt);
     
 } else {
-    $arr["success"] = "false get";
+    die('Error en la consulta: ' . mysqli_error($con));
 }
 
 print(json_encode($arr));

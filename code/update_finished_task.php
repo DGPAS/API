@@ -7,11 +7,13 @@ if (isset($_POST["idTask"])) {
 
     $idTask = $_POST["idTask"];
 
-    $query = "UPDATE `agenda` SET `done`=1 WHERE `idTask`=?";
+    $currentDate = date('Y-m-d');
+
+    $query = "UPDATE `agenda` SET `done`=1, `dateDone`=? WHERE `idTask`=?";
 
     $stmt = mysqli_prepare($con, $query);
         
-    mysqli_stmt_bind_param($stmt, "i", $idTask);
+    mysqli_stmt_bind_param($stmt, "si",$currentDate,$idTask);
     
 
     $exe = mysqli_stmt_execute($stmt);
